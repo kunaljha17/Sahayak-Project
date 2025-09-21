@@ -1,0 +1,170 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Core System Colors */
+    --color-background: #FAFBFC; /* gray-50 */
+    --color-foreground: #2C3E50; /* slate-700 */
+    --color-border: #E1E8ED; /* gray-200 */
+    --color-input: #FFFFFF; /* white */
+    --color-ring: #1B4F72; /* blue-800 */
+    
+    /* Card & Surface Colors */
+    --color-card: #FFFFFF; /* white */
+    --color-card-foreground: #2C3E50; /* slate-700 */
+    --color-popover: #FFFFFF; /* white */
+    --color-popover-foreground: #2C3E50; /* slate-700 */
+    
+    /* Muted Colors */
+    --color-muted: #F8F9FA; /* gray-50 */
+    --color-muted-foreground: #7F8C8D; /* gray-500 */
+    
+    /* Brand Colors */
+    --color-primary: #1B4F72; /* blue-800 */
+    --color-primary-foreground: #FFFFFF; /* white */
+    --color-secondary: #2ECC71; /* emerald-500 */
+    --color-secondary-foreground: #FFFFFF; /* white */
+    
+    /* State Colors */
+    --color-destructive: #E74C3C; /* red-500 */
+    --color-destructive-foreground: #FFFFFF; /* white */
+    --color-accent: #F1C40F; /* yellow-400 */
+    --color-accent-foreground: #2C3E50; /* slate-700 */
+    
+    /* Semantic Colors */
+    --color-success: #27AE60; /* green-600 */
+    --color-success-foreground: #FFFFFF; /* white */
+    --color-warning: #E67E22; /* orange-500 */
+    --color-warning-foreground: #FFFFFF; /* white */
+    --color-error: #E74C3C; /* red-500 */
+    --color-error-foreground: #FFFFFF; /* white */
+    
+    /* Typography */
+    --font-heading: 'Inter', sans-serif;
+    --font-body: 'Source Sans Pro', sans-serif;
+    --font-caption: 'Roboto', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+    
+    /* Shadows */
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.12);
+    --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.15);
+    --shadow-xl: 0 8px 24px rgba(0, 0, 0, 0.15);
+    
+    /* Border Radius */
+    --radius: 0.5rem;
+  }
+  
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-body);
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+  }
+  
+  .font-caption {
+    font-family: var(--font-caption);
+  }
+  
+  .font-mono {
+    font-family: var(--font-mono);
+  }
+}
+
+@layer components {
+  /* Civic Trust Animation System */
+  .civic-hover {
+    @apply transition-all duration-150 ease-out hover:scale-[1.02];
+  }
+  
+  .civic-focus {
+    @apply focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2;
+  }
+  
+  .civic-fade-in {
+    animation: fadeIn 300ms ease-out;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(4px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Status Progress Animation */
+  .status-progress {
+    animation: progressPulse 2s ease-in-out infinite;
+  }
+  
+  @keyframes progressPulse {
+    0%, 100% {
+      transform: scaleX(1);
+    }
+    50% {
+      transform: scaleX(1.05);
+    }
+  }
+  
+  /* Institutional Card Elevation */
+  .civic-card {
+    @apply bg-card text-card-foreground rounded-lg border shadow-sm;
+  }
+  
+  .civic-card-elevated {
+    @apply civic-card shadow-md hover:shadow-lg transition-shadow duration-200;
+  }
+  
+  /* Government Authority Button Styles */
+.btn-civic-primary  {
+    @apply bg-primary text-primary-foreground civic-hover civic-focus;
+  }
+.btn-civic-secondary  {
+    @apply bg-secondary text-secondary-foreground civic-hover civic-focus;
+  }
+  
+  /* Accessibility Enhancements */
+  .sr-only {
+    @apply absolute w-px h-px p-0 -m-px overflow-hidden whitespace-nowrap border-0;
+  }
+  
+  /* High Contrast Mode Support */
+  @media (prefers-contrast: high) {
+    :root {
+      --color-border: #000000;
+      --color-muted: #F0F0F0;
+    }
+  }
+  
+  /* Reduced Motion Support */
+  @media (prefers-reduced-motion: reduce) {
+    .civic-hover {
+      @apply transition-none hover:scale-100;
+    }
+    
+    .civic-fade-in {
+      animation: none;
+    }
+    
+    .status-progress {
+      animation: none;
+    }
+  }
+}
